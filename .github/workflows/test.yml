@@ -1,0 +1,20 @@
+name: Test Project
+on: push                 #adding a trigger, this workflow should run whenever a new commit is pushed to this repo
+jobs:
+  test:
+    runs-on: ubuntu-latest #defining runner
+    steps:
+    - name: Get code     # we want to download the code from the repo on to this runner, we can use such action
+      uses: actions/checkout@v3 #defining identifier ref https://github.com/marketplace/actions/checkout
+    - name: Install NodeJS #since we're using ubuntu-latest node.js it's already installed but for practice we're addingest
+      uses: actions/setup-node@v3 
+      with:
+        node-version: 18
+    - name: Install dependencies
+      run: npm ci
+    - name: Run tests
+      run: npm test
+    
+      
+
+  
